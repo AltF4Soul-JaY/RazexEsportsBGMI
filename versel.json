@@ -6,6 +6,7 @@
     { "source": "/styles/:any*", "destination": "/403.html" },
     { "source": "/data/:any*", "destination": "/403.html" },
     { "source": "/api/:any*", "destination": "/403.html" },
+    { "source": "razexesports.ideahatch.xyz", "destination": "/pages/index.html" },
     { "source": "/", "destination": "/pages/index.html" },
     { "source": "/index.html", "destination": "/pages/index.html" },
     { "source": "/home.html", "destination": "/pages/home.html" },
