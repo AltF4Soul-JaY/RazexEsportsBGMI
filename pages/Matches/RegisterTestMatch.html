@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Razex Esports | Test Match Registration</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+    }
+    .glow {
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+    }
+    .hero {
+      text-align: center;
+      margin: 20px;
+    }
+    .desc {
+      color: #aaa;
+    }
+    form {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 40px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0, 255, 247, 0.2);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      background: #000;
+      color: #00fff7;
+      box-shadow: inset 0 0 5px #00fff7;
+    }
+    .join-btn {
+      background: #00fff7;
+      color: #000;
+      font-weight: bold;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00fff7;
+    }
+    .join-btn:hover {
+      background: #ff0055;
+      color: white;
+      box-shadow: 0 0 15px #ff0055;
+    }
+    .status {
+      text-align: center;
+      margin-top: 20px;
+      color: #00fff7;
+    }
+    #redirectBox {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .highlight {
+      color: #00fff7;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="glow">RAZEX ESPORTS</span></h1>
+    <p>Official BGMI Test Match Registration</p>
+  </header>
+
+  <section class="hero">
+    <h2>Register Your Squad</h2>
+    <p class="desc">Only 24 teams allowed. First come, first served. Fill in at least 3 players to register.</p>
+  </section>
+
+  <form id="registrationForm">
+    <label>Team Name:</label>
+    <input type="text" id="teamName" required>
+
+    <label>WhatsApp Contact:</label>
+    <input type="tel" id="contact" required>
+
+    <hr style="margin: 30px 0; border-color: #444;" />
+
+    <h3>Players (Min 3, Max 6)</h3>
+
+    <label>Player 1 Name:</label><input id="p1" required>
+    <label>Player 1 UID:</label><input id="uid1" required>
+
+    <label>Player 2 Name:</label><input id="p2" required>
+    <label>Player 2 UID:</label><input id="uid2" required>
+
+    <label>Player 3 Name:</label><input id="p3" required>
+    <label>Player 3 UID:</label><input id="uid3" required>
+
+    <label>Player 4 Name:</label><input id="p4">
+    <label>Player 4 UID:</label><input id="uid4">
+
+    <label>Player 5 Name:</label><input id="p5">
+    <label>Player 5 UID:</label><input id="uid5">
+
+    <label>Player 6 Name:</label><input id="p6">
+    <label>Player 6 UID:</label><input id="uid6">
+
+    <button type="submit" class="join-btn">Submit Registration</button>
+
+    <div id="status" class="status"></div>
+    <div id="redirectBox" style="display: none;">
+      <p>✅ Registered! Redirecting to match page...</p>
+      <p><strong>Note:</strong> Match information will be sent via <span class="highlight">WhatsApp/SMS</span>.</p>
+      <button onclick="location.href='Test Match.html'" class="join-btn">Click if not redirected</button>
+    </div>
+  </form>
+
+  <footer>
+    <p>&copy; 2025 Razex Esports | All Rights Reserved</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-LkMwxEsKcz30XFiZNNp52kfOb8rJtkY",
+      authDomain: "idea-hatch-f30a2.firebaseapp.com",
+      databaseURL: "https://idea-hatch-f30a2-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "idea-hatch-f30a2",
+      storageBucket: "idea-hatch-f30a2.appspot.com",
+      messagingSenderId: "772329230400",
+      appId: "1:772329230400:web:1e633f72154d0c318b0fa5",
+      measurementId: "G-8BEDPTPJ76"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const form = document.getElementById("registrationForm");
+    const status = document.getElementById("status");
+    const redirectBox = document.getElementById("redirectBox");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "Checking slots...";
+
+      const teamName = document.getElementById("teamName").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      const players = [];
+
+      for (let i = 1; i <= 6; i++) {
+        const name = document.getElementById(`p${i}`).value.trim();
+        const uid = document.getElementById(`uid${i}`).value.trim();
+        if (name && uid) players.push({ name, uid });
+      }
+
+      if (players.length < 3) {
+        status.textContent = "❌ Minimum 3 players required.";
+        return;
+      }
+
+      const basePath = "RaZeX Esports/Database/Match Registration/Test Match/Teams";
+      const snapshot = await get(ref(db, basePath));
+      let assignedSlot = null;
+
+      for (let i = 1; i <= 24; i++) {
+        const slot = i.toString().padStart(2, "0");
+        if (!snapshot.hasChild(slot)) {
+          assignedSlot = slot;
+          break;
+        }
+      }
+
+      if (!assignedSlot) {
+        status.textContent = "❌ All 24 slots are filled. Registration closed.";
+        return;
+      }
+
+      const teamPath = `${basePath}/${assignedSlot}/${teamName}`;
+      const data = { Contact: contact };
+      players.forEach((p, i) => {
+        data[`Player ${i + 1}`] = p.name;
+        data[`Player ${i + 1} UID`] = p.uid;
+      });
+
+      try {
+        await Promise.all(Object.entries(data).map(([k, v]) => set(ref(db, `${teamPath}/${k}`), v)));
+        status.textContent = "✅ Registration successful!";
+        form.reset();
+        redirectBox.style.display = "block";
+        setTimeout(() => location.href = "Test Match.html", 4000);
+      } catch (err) {
+        console.error(err);
+        status.textContent = "❌ Registration failed. Try again later.";
+      }
+    });
+  </script>
+</body>
+</html>

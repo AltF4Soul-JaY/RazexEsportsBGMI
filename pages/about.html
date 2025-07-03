@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RazexEsports - About Us</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #1a1a1a;
+      --text: #f0f0f0;
+      --primary: #00fff7;
+      --accent: #ff0055;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Orbitron', sans-serif;
+      line-height: 1.6;
+    }
+    header, footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 0 15px var(--primary);
+    }
+    .glow {
+      color: var(--primary);
+      text-shadow: 0 0 8px var(--primary), 0 0 16px var(--primary);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 .glow, h2 .glow {
+      font-size: 2.5rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 20px rgba(0,255,247,0.1);
+    }
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    .card p {
+      margin-bottom: 15px;
+      color: #ccc;
+      font-size: 1rem;
+    }
+    .instagram {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: #000;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .instagram:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    footer p {
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span class="glow">RAZEX ESPORTS</span></h1>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html" class="glow">About Us</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="news.html">News</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="card">
+      <h3>Who We Are</h3>
+      <p>
+        RaZeX ESPORTS began as a grassroots <strong>BGMI</strong> team back in 2024. Over the years we’ve battled through 
+        countless top‑tier tournaments—securing multiple championship titles and clinching qualification spots for 
+        national events. Our players have proven their mettle on the biggest stages, from the Battlegrounds India Series (BGIS) 
+        to top tier tournaments.
+      </p>
+      <p>
+        Today, RaZeX ESPORTS evolves into a full-fledged organization—expanding our roster, infrastructure, and content creation. 
+        We’re dedicated to nurturing talent, pushing the BGMI competitive scene forward, and delivering high‑octane matches 
+        for our fans.
+      </p>
+    </section>
+
+    <section class="card">
+      <h3>Our Journey</h3>
+      <p>
+        • <strong>2021:</strong> NA <br>
+        • <strong>2022:</strong> NA <br>
+        • <strong>2023:</strong> NA <br>
+        • <strong>2024:</strong> BGIS ROUND 3. <br>
+        • <strong>2025:</strong> BGIS ROUND 3. <br>
+      </p>
+    </section>
+
+    <section class="card" style="text-align:center;">
+      <h3>Stay Connected</h3>
+      <p>Follow us on Instagram for live updates, player spotlights, and behind‑the‑scenes action.</p>
+      <a href="https://www.instagram.com/razexesports/" target="_blank" class="instagram">
+        @razexesports
+      </a>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 RaZeX ESPORTS. All Rights Reserved.</p>
+  </footer>
+  
+</body>
+</html>
