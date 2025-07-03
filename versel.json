@@ -1,23 +1,20 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "pages/**/*", "use": "@vercel/static" },
-    { "src": "styles/**/*", "use": "@vercel/static" },
-    { "src": "scripts/**/*", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "^/$", "dest": "/pages/index.html" },
-    { "src": "^/about.html$", "dest": "/pages/about.html" },
-    { "src": "^/home.html$", "dest": "/pages/home.html" },
-    { "src": "^/news.html$", "dest": "/pages/news.html" },
-    { "src": "^/teams.html$", "dest": "/pages/teams.html" },
-    { "src": "^/Matches/Test Match.html$", "dest": "/pages/Matches/Test Match.html" },
-    { "src": "^/Matches/RegisterTestMatch.html$", "dest": "/pages/Matches/RegisterTestMatch.html" },
-
-    { "src": "/styles/(.*)", "dest": "/styles/$1" },
-    { "src": "/scripts/(.*)", "dest": "/scripts/$1" },
-
-    { "src": "/(.*)", "dest": "/pages/$1" }
+  "rewrites": [
+    
+    { "source": "/assets/:any*", "destination": "/403.html" },
+    { "source": "/scripts/:any*", "destination": "/403.html" },
+    { "source": "/styles/:any*", "destination": "/403.html" },
+    { "source": "/data/:any*", "destination": "/403.html" },
+    { "source": "/api/:any*", "destination": "/403.html" },
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/index.html", "destination": "/pages/index.html" },
+    { "source": "/home.html", "destination": "/pages/home.html" },
+    { "source": "/about.html", "destination": "/pages/about.html" },
+    { "source": "/news.html", "destination": "/pages/news.html" },
+    { "source": "/teams.html", "destination": "/pages/teams.html" },
+    { "source": "/contact.html", "destination": "/pages/contact.html" },
+    { "source": "/matches.html", "destination": "/pages/matches.html" },
+    { "source": "/Matches/Test Match.html", "destination": "/pages/Matches/Test Match.html" },
+    { "source": "/Matches/RegisterTestMatch.html", "destination": "/pages/Matches/RegisterTestMatch.html" }
   ]
 }
-
